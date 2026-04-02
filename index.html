@@ -1,1 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aaron at 30</title>
+  <style>
+    :root{
+      --bg:#101318;
+      --bg2:#1a1f27;
+      --card:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.12);
+      --text:#f5f1eb;
+      --muted:#bbb2b0;
+      --accent:#d2bea0;
+      --accent2:#8ea08a;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(142,160,138,.14), transparent 22%),
+        radial-gradient(circle at 80% 15%, rgba(210,190,160,.12), transparent 20%),
+        linear-gradient(135deg,var(--bg),var(--bg2));
+      overflow-x:hidden;
+    }
+    .bg-particles{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:0;
+    }
+    .bg-particles span{
+      position:absolute;
+      bottom:-60px;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:rgba(255,255,255,.2);
+      animation:floatUp linear infinite;
+    }
+    .bg-particles span:nth-child(1){left:10%;animation-duration:12s}
+    .bg-particles span:nth-child(2){left:25%;animation-duration:16s}
+    .bg-particles span:nth-child(3){left:40%;animation-duration:13s}
+    .bg-particles span:nth-child(4){left:58%;animation-duration:18s}
+    .bg-particles span:nth-child(5){left:75%;animation-duration:14s}
+    .bg-particles span:nth-child(6){left:90%;animation-duration:17s}
+    @keyframes floatUp{
+      from{transform:translateY(0);opacity:0}
+      15%{opacity:.35}
+      to{transform:translateY(-120vh);opacity:0}
+    }
 
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px 18px 70px;
+      position:relative;
+      z-index:1;
+    }
+    .glass{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:26px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 18px 45px rgba(0,0,0,.22);
+    }
+    .hero{
+      padding:34px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:20px;
+      align-items:center;
+    }
+    .eyebrow{
+      color:var(--accent);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(38px,7vw,72px);
+      line-height:.95;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.6;
+      margin-top:16px;
+      max-width:650px;
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:20px;
+    }
+    .chip{
+      padding:10px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      font-weight:700;
+    }
+    .hero-photos{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .hero-photos img,
+    .photo-grid img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .hero-photos .ph{
+      min-height:240px;
+      overflow:hidden;
+      border-radius:20px;
+      border:1px solid var(--line);
+      transform:translateY(0);
+      transition:.35s ease;
+    }
+    .hero-photos .ph:hover,
+    .photo-grid .ph:hover{
+      transform:translateY(-4px) scale(1.01);
+    }
+
+    .tabs{
+      margin:18px 0 22px;
+      display:flex;
+      justify-content:center;
+      position:sticky;
+      top:12px;
+      z-index:5;
+    }
+    .tab-wrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:10px;
+      border-radius:999px;
+      background:rgba(10,12,16,.6);
+      border:1px solid var(--line);
+      backdrop-filter:blur(10px);
+    }
+    .tab-btn{
+      border:none;
+      background:transparent;
+      color:#ddd7d4;
+      padding:12px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .tab-btn.active{
+      background:linear-gradient(135deg, rgba(210,190,160,.24), rgba(142,160,138,.24));
+      color:#fff;
+    }
+
+    .panel{display:none}
+    .panel.active{
+      display:block;
+      animation:fade .45s ease;
+    }
+    @keyframes fade{
+      from{opacity:0;transform:translateY(10px)}
+      to{opacity:1;transform:none}
+    }
+
+    .section{
+      padding:28px;
+      margin-top:18px;
+    }
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(28px,4vw,40px);
+    }
+    .lead{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:18px;
+    }
+
+    .story-grid,
+    .photo-grid,
+    .reasons{
+      display:grid;
+      gap:16px;
+    }
+    .story-grid{grid-template-columns:repeat(3,1fr)}
+    .photo-grid{grid-template-columns:1.2fr .8fr .8fr}
+    .reasons{grid-template-columns:repeat(2,1fr)}
+
+    .card,
+    .reason,
+    .mini{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+      padding:20px;
+    }
+    .num{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg, rgba(210,190,160,.25), rgba(142,160,138,.25));
+      font-weight:700;
+      margin-bottom:12px;
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size:24px;
+    }
+    .card p,
+    .mini,
+    .reason p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .reason{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .reason .n{
+      flex:0 0 34px;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg, rgba(210,190,160,.25), rgba(142,160,138,.25));
+      font-weight:700;
+    }
+
+    .quote{
+      margin-top:16px;
+      padding:16px 18px;
+      border-left:3px solid var(--accent);
+      color:#eee7df;
+      background:rgba(255,255,255,.03);
+      border-radius:0 16px 16px 0;
+    }
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:16px;
+    }
+
+    .photo-grid .ph{
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid var(--line);
+      min-height:280px;
+      position:relative;
+      transition:.35s ease;
+    }
+    .stack{
+      display:grid;
+      gap:16px;
+    }
+    .caption{
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:12px;
+      background:rgba(0,0,0,.42);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .note{
+      font-size:20px;
+      line-height:1.8;
+      color:#f2ede7;
+    }
+    .sign{
+      margin-top:14px;
+      color:var(--accent);
+      font-size:28px;
+      font-style:italic;
+    }
+    .footer{
+      text-align:center;
+      color:#9e9795;
+      margin-top:18px;
+      font-size:14px;
+    }
+
+    @media (max-width: 900px){
+      .hero,
+      .story-grid,
+      .photo-grid,
+      .reasons,
+      .mini-grid{
+        grid-template-columns:1fr;
+      }
+      .hero-photos{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+    @media (max-width: 640px){
+      .hero{padding:24px}
+      .section{padding:22px}
+      .hero-photos{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-particles">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="wrap">
+    <section class="hero glass">
+      <div>
+        <div class="eyebrow">For Aaron's 30th</div>
+        <h1>30 reasons.<br>One person.</h1>
+        <div class="sub">
+          For the boy I met in Geneva, the man I found again, and the love that kept choosing us through every mile. Happy 30th birthday.
+        </div>
+        <div class="chips">
+          <div class="chip">Kids in Geneva</div>
+          <div class="chip">Found each other again</div>
+          <div class="chip">Long distance, real love</div>
+          <div class="chip">Love and loyalty</div>
+        </div>
+      </div>
+
+      <div class="hero-photos">
+        <div class="ph"><img src="photo1.jpg" alt="Us together"></div>
+        <div class="ph"><img src="photo2.jpg" alt="Us together"></div>
+      </div>
+    </section>
+
+    <div class="tabs">
+      <div class="tab-wrap glass">
+        <button class="tab-btn active" data-tab="story">Our Story</button>
+        <button class="tab-btn" data-tab="reasons">30 Reasons</button>
+        <button class="tab-btn" data-tab="photos">Photos</button>
+        <button class="tab-btn" data-tab="letter">Love Note</button>
+      </div>
+    </div>
+
+    <section id="story" class="panel active">
+      <div class="section glass">
+        <h2>Our story in three chapters</h2>
+        <p class="lead">Some people meet once. We found our way back.</p>
+
+        <div class="story-grid">
+          <div class="card">
+            <div class="num">1</div>
+            <h3>Geneva</h3>
+            <p>We met so young, just kids in school, before either of us could know how important we would become to each other.</p>
+          </div>
+
+          <div class="card">
+            <div class="num">2</div>
+            <h3>Reconnection</h3>
+            <p>Life brought us back together as adults, and what grew between us felt pure, natural, and exactly right.</p>
+          </div>
+
+          <div class="card">
+            <div class="num">3</div>
+            <h3>Us</h3>
+            <p>Even with distance and life’s hardest moments, we stayed inseparable in the ways that matter most: love and loyalty.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          Long distance is hard, but we made it — and we keep making it — because what we have is real.
+        </div>
+
+        <div class="mini-grid">
+          <div class="mini">Then: two kids in Geneva with no idea our story would come back around in the best possible way.</div>
+          <div class="mini">Now: two adults who chose each other fully and turned distance into proof of how strong this love really is.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reasons" class="panel">
+      <div class="section glass">
+        <h2>30 reasons I choose you</h2>
+        <p class="lead">For your 30th birthday, thirty truths about the man you are to me.</p>
+
+        <div class="reasons">
+          <div class="reason"><div class="n">1</div><p>Because you are kind in the quiet ways that matter most.</p></div>
+          <div class="reason"><div class="n">2</div><p>Because you have the gentlest heart.</p></div>
+          <div class="reason"><div class="n">3</div><p>Because you support me through everything.</p></div>
+          <div class="reason"><div class="n">4</div><p>Because your love makes hard days feel lighter.</p></div>
+          <div class="reason"><div class="n">5</div><p>Because you make me want to become better.</p></div>
+          <div class="reason"><div class="n">6</div><p>Because you are handsome in every possible way.</p></div>
+          <div class="reason"><div class="n">7</div><p>Because you are caring and thoughtful.</p></div>
+          <div class="reason"><div class="n">8</div><p>Because you are sexy and still somehow so sweet.</p></div>
+          <div class="reason"><div class="n">9</div><p>Because you are cute without even trying.</p></div>
+          <div class="reason"><div class="n">10</div><p>Because you make me laugh exactly when I need it.</p></div>
+          <div class="reason"><div class="n">11</div><p>Because being with you feels peaceful.</p></div>
+          <div class="reason"><div class="n">12</div><p>Because no matter the distance, you never let me feel alone.</p></div>
+          <div class="reason"><div class="n">13</div><p>Because what we have is pure and real.</p></div>
+          <div class="reason"><div class="n">14</div><p>Because you stay through every high and low.</p></div>
+          <div class="reason"><div class="n">15</div><p>Because we choose each other again and again.</p></div>
+          <div class="reason"><div class="n">16</div><p>Because you are my safe place.</p></div>
+          <div class="reason"><div class="n">17</div><p>Because you are strong without losing your softness.</p></div>
+          <div class="reason"><div class="n">18</div><p>Because you make love feel honest, calm, and easy.</p></div>
+          <div class="reason"><div class="n">19</div><p>Because you are patient with me.</p></div>
+          <div class="reason"><div class="n">20</div><p>Because your voice can change my whole mood.</p></div>
+          <div class="reason"><div class="n">21</div><p>Because even ordinary moments feel special with you.</p></div>
+          <div class="reason"><div class="n">22</div><p>Because you are my best friend, always.</p></div>
+          <div class="reason"><div class="n">23</div><p>Because you know how to make me feel loved.</p></div>
+          <div class="reason"><div class="n">24</div><p>Because you see me, understand me, and stay.</p></div>
+          <div class="reason"><div class="n">25</div><p>Because you carry strength, humor, and tenderness all at once.</p></div>
+          <div class="reason"><div class="n">26</div><p>Because our story proves the best things can find their way back.</p></div>
+          <div class="reason"><div class="n">27</div><p>Because loving you feels like home.</p></div>
+          <div class="reason"><div class="n">28</div><p>Because I am proud of the man you are.</p></div>
+          <div class="reason"><div class="n">29</div><p>Because after all this time, I still get excited that you are mine.</p></div>
+          <div class="reason"><div class="n">30</div><p>Because out of everyone in the world, I would still choose you.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="photos" class="panel">
+      <div class="section glass">
+        <h2>Proof of us</h2>
+        <p class="lead">From school photos to right now. Same story, bigger love.</p>
+
+        <div class="photo-grid">
+          <div class="ph">
+            <img src="photo3.jpg" alt="Then and now">
+            <div class="caption">From kids in Geneva to us now.</div>
+          </div>
+
+          <div class="stack">
+            <div class="ph">
+              <img src="photo4.jpg" alt="Outdoor photo">
+              <div class="caption">A good day with you is my favorite place to be.</div>
+            </div>
+            <div class="ph">
+              <img src="photo5.jpg" alt="Outdoor photo">
+              <div class="caption">You make every season feel better.</div>
+            </div>
+          </div>
+
+          <div class="stack">
+            <div class="ph">
+              <img src="photo1.jpg" alt="Home photo">
+              <div class="caption">Home is you.</div>
+            </div>
+            <div class="ph">
+              <img src="photo2.jpg" alt="Home photo">
+              <div class="caption">Still my favorite person.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="letter" class="panel">
+      <div class="section glass">
+        <h2>Happy 30th, baby</h2>
+        <p class="note">Thank you for being you — for supporting me, for loving me, for being the best man: handsome, kind, gentle, funny, caring, and so deeply special to me.</p>
+        <p class="note">We met as kids in Geneva, found each other again as adults, and built something beautiful and true. Long distance has not been easy, but we made it, and we keep making it, because what we have is real.</p>
+        <p class="note">I love you so much. You are my comfort, my favorite person, and my best friend. I hope this new decade brings you everything you deserve, and I hope you always remember how loved you are by me.</p>
+        <div class="sign">Forever your girl.</div>
+      </div>
+    </section>
+
+    <div class="footer">Made with love for Aaron at 30.</div>
+  </div>
+
+  <script>
+    const btns = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        btns.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(target).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
