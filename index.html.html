@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>30 Reasons I Love You</title>
+  <style>
+    :root{
+      --bg:#fffaf7;
+      --paper:#ffffff;
+      --ink:#403233;
+      --muted:#7d6769;
+      --rose:#f5d7dc;
+      --rose-deep:#d98d9a;
+      --gold:#f1dfb5;
+      --line:#f0e4e6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Georgia", "Times New Roman", serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top left, #ffeef1 0%, rgba(255,238,241,0.4) 24%, transparent 25%),
+        radial-gradient(circle at bottom right, #fff0d8 0%, rgba(255,240,216,0.35) 22%, transparent 23%),
+        var(--bg);
+      line-height:1.6;
+    }
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:48px 28px 72px;
+    }
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.92));
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:56px 54px;
+      box-shadow:0 18px 50px rgba(137, 97, 104, 0.08);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before,.hero:after{
+      content:"";
+      position:absolute;
+      width:220px;height:220px;
+      border-radius:50%;
+      background:rgba(245,215,220,.45);
+      filter:blur(18px);
+      z-index:0;
+    }
+    .hero:before{top:-110px;right:-70px}
+    .hero:after{bottom:-120px;left:-90px}
+    .hero > *{position:relative;z-index:1}
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:12px;
+      color:var(--rose-deep);
+      margin-bottom:14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight:700;
+    }
+    h1{
+      font-size:54px;
+      line-height:1.05;
+      margin:0 0 18px;
+      font-weight:700;
+    }
+    .subtitle{
+      font-size:22px;
+      color:var(--muted);
+      max-width:760px;
+      margin:0;
+    }
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:28px;
+    }
+    .pill{
+      background:#fff7f8;
+      border:1px solid #f3dce0;
+      color:#8d5f67;
+      border-radius:999px;
+      padding:9px 14px;
+      font-size:14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .section{
+      margin-top:34px;
+      background:rgba(255,255,255,0.86);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:34px;
+      box-shadow:0 12px 30px rgba(137,97,104,.05);
+    }
+    h2{
+      margin:0 0 16px;
+      font-size:28px;
+    }
+    .lead{
+      font-size:18px;
+      color:var(--muted);
+      margin:0 0 8px;
+    }
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+      margin-top:16px;
+    }
+    .card{
+      background:linear-gradient(180deg, #fff, #fffaf8);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:22px;
+      min-height:170px;
+    }
+    .card .num{
+      width:38px;height:38px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--rose);
+      color:#81545b;
+      font-weight:700;
+      margin-bottom:14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size:22px;
+    }
+    .card p{margin:0;color:var(--muted);font-size:16px}
+    .reasons{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px 18px;
+      margin-top:18px;
+    }
+    .reason{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px 18px;
+      background:#fff;
+    }
+    .reason .n{
+      flex:0 0 34px;
+      width:34px;height:34px;border-radius:50%;
+      background:var(--gold);
+      color:#6c5840;
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;font-weight:700;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-top:2px;
+    }
+    .reason p{margin:0;font-size:16px}
+    .letter{
+      font-size:20px;
+      background:linear-gradient(180deg,#fffdfc,#fff9f7);
+    }
+    .letter p{margin:0 0 14px}
+    .signature{
+      margin-top:20px;
+      color:#8b6268;
+      font-style:italic;
+      font-size:24px;
+    }
+    .footer{
+      text-align:center;
+      color:#a07f84;
+      margin-top:22px;
+      font-size:14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    @media (max-width: 800px){
+      h1{font-size:42px}
+      .timeline,.reasons{grid-template-columns:1fr}
+      .hero{padding:42px 28px}
+      .section{padding:24px}
+    }
+    @media print {
+      body{background:#fff}
+      .wrap{padding:18px}
+      .hero,.section{box-shadow:none}
+      .section{break-inside:avoid-page}
+      .reason,.card{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">For your 30th birthday</div>
+      <h1>30 Reasons I Love You</h1>
+      <p class="subtitle">A little love board for the boy I met in Geneva, found again as an adult, and choose every day - across every mile, every season, and every up and down.</p>
+      <div class="pill-row">
+        <span class="pill">We were kids first</span>
+        <span class="pill">Then life brought us back</span>
+        <span class="pill">Long distance, strong love</span>
+        <span class="pill">My best friend forever</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Our story in three little chapters</h2>
+      <p class="lead">Some loves arrive once. Ours found its way back.</p>
+      <div class="timeline">
+        <div class="card">
+          <div class="num">1</div>
+          <h3>Geneva</h3>
+          <p>We met so young, just kids in school, before we could ever know how important we'd become to each other.</p>
+        </div>
+        <div class="card">
+          <div class="num">2</div>
+          <h3>Reconnection</h3>
+          <p>Life brought us back together at exactly the right time, and what grew between us felt pure, easy, and meant to be.</p>
+        </div>
+        <div class="card">
+          <div class="num">3</div>
+          <h3>Us</h3>
+          <p>Even with distance and life's hardest moments, we stayed inseparable in the ways that matter most: loyalty, softness, laughter, and love.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>30 reasons I love you</h2>
+      <p class="lead">For your 30th, here are thirty little truths about the man you are to me.</p>
+      <div class="reasons">
+        <div class="reason"><div class="n">1</div><p>Because you are kind in the quiet, everyday ways that matter most.</p></div>
+        <div class="reason"><div class="n">2</div><p>Because you have the gentlest heart.</p></div>
+        <div class="reason"><div class="n">3</div><p>Because you support me through everything.</p></div>
+        <div class="reason"><div class="n">4</div><p>Because your love makes hard days softer.</p></div>
+        <div class="reason"><div class="n">5</div><p>Because you make me want to become a better version of myself.</p></div>
+        <div class="reason"><div class="n">6</div><p>Because you are handsome in every possible way.</p></div>
+        <div class="reason"><div class="n">7</div><p>Because you are caring and thoughtful.</p></div>
+        <div class="reason"><div class="n">8</div><p>Because you are sexy and still somehow so sweet.</p></div>
+        <div class="reason"><div class="n">9</div><p>Because you are cute without even trying.</p></div>
+        <div class="reason"><div class="n">10</div><p>Because you make me laugh when I need it most.</p></div>
+        <div class="reason"><div class="n">11</div><p>Because being with you feels peaceful.</p></div>
+        <div class="reason"><div class="n">12</div><p>Because no matter the distance, you never let me feel alone.</p></div>
+        <div class="reason"><div class="n">13</div><p>Because what we have is pure and real.</p></div>
+        <div class="reason"><div class="n">14</div><p>Because you have stayed by my side through ups and downs.</p></div>
+        <div class="reason"><div class="n">15</div><p>Because we choose each other again and again.</p></div>
+        <div class="reason"><div class="n">16</div><p>Because you are my safe place.</p></div>
+        <div class="reason"><div class="n">17</div><p>Because you are strong without losing your softness.</p></div>
+        <div class="reason"><div class="n">18</div><p>Because you make love feel easy, honest, and calm.</p></div>
+        <div class="reason"><div class="n">19</div><p>Because you are patient with me.</p></div>
+        <div class="reason"><div class="n">20</div><p>Because your voice can change my whole mood.</p></div>
+        <div class="reason"><div class="n">21</div><p>Because even ordinary moments feel special with you.</p></div>
+        <div class="reason"><div class="n">22</div><p>Because you are my best friend above everything.</p></div>
+        <div class="reason"><div class="n">23</div><p>Because you know how to make me feel loved.</p></div>
+        <div class="reason"><div class="n">24</div><p>Because you see me, understand me, and stay.</p></div>
+        <div class="reason"><div class="n">25</div><p>Because you carry such a beautiful mix of strength, humor, and tenderness.</p></div>
+        <div class="reason"><div class="n">26</div><p>Because our story reminds me that the best things can come back around.</p></div>
+        <div class="reason"><div class="n">27</div><p>Because loving you feels like home.</p></div>
+        <div class="reason"><div class="n">28</div><p>Because I am proud of the man you are.</p></div>
+        <div class="reason"><div class="n">29</div><p>Because after all this time, I still get excited that you're mine.</p></div>
+        <div class="reason"><div class="n">30</div><p>Because out of everyone in the world, I would still choose you.</p></div>
+      </div>
+    </section>
+
+    <section class="section letter">
+      <h2>And the most important thing</h2>
+      <p>Happy 30th birthday, baby.</p>
+      <p>Thank you for being you - for supporting me, for loving me, for being the best man: handsome, kind, gentle, funny, caring, and so deeply special to me.</p>
+      <p>We met as kids in Geneva, found each other again as adults, and built something beautiful and true. Long distance has not been easy, but we made it, and we keep making it, because what we have is real.</p>
+      <p>I love you so much. You are my boyfriend, my comfort, my favorite person, and my best friend. I hope this new decade brings you everything you deserve, and I hope you always remember how loved you are by me.</p>
+      <div class="signature">Forever your girl.</div>
+    </section>
+
+    <div class="footer">Made with love for a 30th birthday.</div>
+  </div>
+</body>
+</html>
