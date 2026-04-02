@@ -6,26 +6,19 @@
 <title>30 Reasons I Love You</title>
 
 <style>
-:root{
-  --bg:#0f2027;
-  --bg2:#203a43;
-  --bg3:#2c5364;
-  --text:#ffffff;
-}
-
 body{
   margin:0;
   font-family: Arial, sans-serif;
-  color:var(--text);
-  background: linear-gradient(135deg,var(--bg),var(--bg2),var(--bg3));
+  color:white;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
   overflow-x:hidden;
 }
 
-/* HERO */
+/* HERO /
 .hero{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   padding:60px;
 }
 
@@ -39,30 +32,30 @@ h1{
 }
 
 .subtitle{
-  opacity:0.8;
   margin-top:20px;
+  opacity:0.8;
 }
 
-/* IMAGES */
+/ IMAGES /
 .images{
   display:flex;
   gap:20px;
 }
 
 .images img{
-  width:200px;
-  height:260px;
+  width:220px;
+  height:280px;
   object-fit:cover;
   border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
-  transition:0.3s;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-.images img:hover{
-  transform:scale(1.05);
+/ SECTIONS /
+.section{
+  padding:40px 60px;
 }
 
-/* FLOATING HEARTS */
+/ HEARTS /
 .heart{
   position:fixed;
   bottom:-20px;
@@ -72,20 +65,23 @@ h1{
 }
 
 @keyframes float{
-  0%{transform:translateY(0) scale(1);}
-  100%{transform:translateY(-100vh) scale(1.5);}
+  from{transform:translateY(0);}
+  to{transform:translateY(-100vh);}
 }
 
-/* SECTIONS */
-.section{
-  padding:40px 60px;
+/ BUTTON /
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ffffff20;
+  padding:10px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:14px;
 }
 
-h2{
-  margin-bottom:10px;
-}
-
-/* RESPONSIVE */
+/ MOBILE */
 @media(max-width:900px){
   .hero{
     flex-direction:column;
@@ -104,11 +100,13 @@ h2{
 <body>
 
 <!-- 🎵 MUSIC -->
-<audio autoplay loop>
+<audio id="music" loop>
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 💖 HERO -->
+<div class="music-btn" onclick="playMusic()">💚 Play our song</div>
+
+<!-- HERO -->
 <div class="hero">
   <div class="text">
     <h1>30 reasons.<br>One person.</h1>
@@ -118,39 +116,45 @@ h2{
   </div>
 
   <div class="images">
-    <!-- REPLACE THESE FILE NAMES WITH YOUR EXACT ONES -->
-    <img src="sunset.jpg">
-    <img src="pokemon.jpg">
+    <!-- ⚠️ PUT YOUR REAL FILE NAMES HERE -->
+    <img src="sunset.jpg" alt="Us sunset">
+    <img src="pokemon.jpg" alt="Pokemon card">
   </div>
 </div>
 
-<!-- 💌 CONTENT -->
+<!-- STORY -->
 <div class="section">
-  <h2>Our story</h2>
+  <h2>Our story 💚</h2>
   <p>We met young. Life brought us back. And somehow, we never let go.</p>
 </div>
 
+<!-- REASONS -->
 <div class="section">
-  <h2>30 reasons I love you</h2>
+  <h2>30 reasons I love you 💚</h2>
   <p>Because you are my peace, my laughter, my safe place, and my best friend.</p>
 </div>
 
-<!-- 💖 FLOATING HEARTS SCRIPT -->
+<!-- HEART SCRIPT -->
 <script>
 function createHeart(){
   const heart = document.createElement("div");
-  heart.classList.add("heart");
+  heart.className = "heart";
   heart.innerHTML = "💚 A+V";
 
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (5 + Math.random()*5) + "s";
+  heart.style.animationDuration = (5 + Math.random()5) + "s";
 
   document.body.appendChild(heart);
 
-  setTimeout(()=>{heart.remove()},8000);
+  setTimeout(()=>heart.remove(),8000);
 }
 
 setInterval(createHeart, 500);
+
+/ MUSIC FIX */
+function playMusic(){
+  document.getElementById("music").play();
+}
 </script>
 
 </body>
